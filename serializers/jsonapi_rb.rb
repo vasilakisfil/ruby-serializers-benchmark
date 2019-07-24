@@ -4,7 +4,7 @@ class Serializers
       type 'user'
 
       attributes(*User.model_attributes)
-      has_many :microposts
+      #has_many :microposts
       #has_many :addresses
     end
 

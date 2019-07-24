@@ -12,7 +12,7 @@ class Serializers
       type :user
       collection :users
 
-      has_many :microposts
+      #has_many :microposts
       #has_many :addresses
     end
 

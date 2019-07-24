@@ -6,7 +6,7 @@ class Serializers
       set_type :user  # optional
       set_id :id # optional
       attributes(*User.model_attributes)
-      has_many :microposts
+      #has_many :microposts
       #has_many :addresses
     end
 
