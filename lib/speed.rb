@@ -8,8 +8,7 @@ module SerializersBenchmark
       end
     end
 
-    def run!
-      users = collection_size.times.map{User.new}
+    def run!(users)
       puts "#{collection_size} of records"
       Benchmark.ips do |x|
         x.config(time: TIME[:time], warmup: TIME[:warmup])

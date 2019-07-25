@@ -8,11 +8,6 @@ class Results
     @internal = []
   end
 
-  def create(setup = {})
-    @internal << setup
-  end
-  alias << create
-
   def append_speed_data(data = {})
     @internal.last[:data] = {} if @internal.last[:data].nil?
     @internal.last[:data][:speed] = data
@@ -23,12 +18,13 @@ class Results
     @internal.last[:data][:memory] = data
   end
 
-  def to_h
-    @internal
+  def method_missing(meth, *args, &block)
+    if @internal.respond_to?(meth)
+      @internal.send(meth, *args, &block)
+    else
+      super
+    end
   end
 
-  def to_yaml
-    @internal.to_yaml
-  end
 end
 

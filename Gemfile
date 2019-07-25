@@ -11,4 +11,6 @@ gem "ruby-prof"
 gem "pry"
 gem 'active_model_serializers'
 gem 'simple_ams', path: '../../SimpleAMS'
+
+gem 'gruff'
 #gem 'kalibera'
