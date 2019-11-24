@@ -15,7 +15,7 @@ class Serializers
       type :user
       attributes(*User.model_attributes)
 
-      #has_many :microposts, serializer: Serializers::AMS::MicropostSerializer
+      has_many :microposts, serializer: Serializers::AMS::MicropostSerializer
       #has_many :addresses, serializer: Serializers::AMS::AddressSerializer
     end
   end

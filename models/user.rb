@@ -14,11 +14,11 @@ class User
 
     def relations
       [
-=begin
         OpenStruct.new(
           name: :microposts, type: :micropost#, options: {serializer: Serializers::MicropostSerializer}
         ),
 
+=begin
         OpenStruct.new(
           name: :addresses, type: :address#, options: {serializer: Serializers::MicropostSerializer}
         ),
@@ -100,7 +100,6 @@ class User
     @followers_count ||= 10
   end
 
-=begin
   def microposts
     @microposts ||= 10.times.map{Micropost.new}
   end
@@ -109,6 +108,7 @@ class User
     @micropost_ids ||= microposts.map(&:id)
   end
 
+=begin
   def addresses
     @address ||= 10.times.map{Address.new}
   end

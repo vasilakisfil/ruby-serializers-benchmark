@@ -15,7 +15,7 @@ module SerializersBenchmark
 
         x.report("FastJsonapi") {
           Serializers::FastJsonapi::UserSerializer.new(users, {
-            #include: [:microposts]
+            include: [:microposts]
           }).serializable_hash
         }
 
@@ -24,7 +24,7 @@ module SerializersBenchmark
           jsonapi_rb_renderer.render(users, {
             class: {
               User: Serializers::JsonapiRb::UserSerializer,
-              #Micropost: Serializers::JsonapiRb::MicropostSerializer,
+              Micropost: Serializers::JsonapiRb::MicropostSerializer,
               #Address: Serializers::JsonapiRb::AddressSerializer
             },
             include: [:microposts]
@@ -42,7 +42,7 @@ module SerializersBenchmark
             adapter: :json_api,
             each_serializer: Serializers::AMS::UserSerializer,
             key_transform: :unaltered,
-            #include: [:microposts]
+            include: [:microposts]
           }).as_json
         }
 
