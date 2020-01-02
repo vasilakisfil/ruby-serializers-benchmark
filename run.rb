@@ -2,10 +2,10 @@ require 'pathname'
 require 'rubygems'
 require 'bundler/setup'
 Bundler.require(:default)
+require "active_support/core_ext/object/deep_dup"
 
 require_relative 'benchmark-ips/custom_compare'
 require_relative 'benchmark-memory/custom_io_output'
-
 
 [:models, :serializers, :lib].each do |dir|
   Dir[
@@ -16,8 +16,8 @@ require_relative 'benchmark-memory/custom_io_output'
 end
 include SerializersBenchmark::Helpers
 
-AMOUNTS = [10, 25, 50, 100]
-TIME = {time: 500, warmup: 100}
+AMOUNTS = [10, 250]#, 50, 100]
+TIME = {time: 10, warmup: 5}
 
 AMOUNTS.each do |collection_size|
   users = collection_size.times.map{User.new}

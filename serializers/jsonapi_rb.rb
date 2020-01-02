@@ -5,7 +5,7 @@ class Serializers
 
       attributes(*User.model_attributes)
       has_many :microposts
-      #has_many :addresses
+      has_many :addresses
     end
 
     class MicropostSerializer < JSONAPI::Serializable::Resource

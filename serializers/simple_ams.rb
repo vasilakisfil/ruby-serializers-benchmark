@@ -13,7 +13,7 @@ class Serializers
       collection :users
 
       has_many :microposts
-      #has_many :addresses
+      has_many :addresses
     end
 
     class MicropostSerializer < BaseSerializer

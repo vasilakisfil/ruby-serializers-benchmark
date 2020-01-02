@@ -7,7 +7,7 @@ class Serializers
       set_id :id # optional
       attributes(*User.model_attributes)
       has_many :microposts
-      #has_many :addresses
+      has_many :addresses
     end
 
     class MicropostSerializer

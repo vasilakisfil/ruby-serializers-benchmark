@@ -17,11 +17,10 @@ class User
         OpenStruct.new(
           name: :microposts, type: :micropost#, options: {serializer: Serializers::MicropostSerializer}
         ),
-
-=begin
         OpenStruct.new(
           name: :addresses, type: :address#, options: {serializer: Serializers::MicropostSerializer}
         ),
+=begin
         OpenStruct.new(
           name: :address, type: :address #options: {serializer: AddressSerializer}
         ),
@@ -82,11 +81,11 @@ class User
   end
 
   def created_at
-    @cretated_at ||= Faker::Date.backward(100)
+    @cretated_at ||= Faker::Date.backward(days: 100)
   end
 
   def updated_at
-    @updated_at ||= Faker::Date.between(created_at, Date.today)
+    @updated_at ||= Faker::Date.between(from: created_at, to: Date.today)
   end
 
   def token
@@ -108,7 +107,6 @@ class User
     @micropost_ids ||= microposts.map(&:id)
   end
 
-=begin
   def addresses
     @address ||= 10.times.map{Address.new}
   end
@@ -116,6 +114,8 @@ class User
   def address_ids
     @address_ids ||= addresses.map(&:id)
   end
+
+=begin
   def followers
     @followers ||= 50.times.map{User.new}
   end

@@ -14,7 +14,7 @@ module SerializersBenchmark
 
         x.report("FastJsonapi") {
           Serializers::FastJsonapi::UserSerializer.new(users, {
-            include: [:microposts]
+            include: [:microposts, :address]
           }).serializable_hash
         }
 
@@ -24,15 +24,16 @@ module SerializersBenchmark
             class: {
               User: Serializers::JsonapiRb::UserSerializer,
               Micropost: Serializers::JsonapiRb::MicropostSerializer,
-              #Address: Serializers::JsonapiRb::AddressSerializer
+              Address: Serializers::JsonapiRb::AddressSerializer
             },
-            include: [:microposts]
+            include: [:microposts, :address]
           })
         }
 
         x.report("SimpleAMS") {
           SimpleAMS::Renderer::Collection.new(users, {
             serializer: Serializers::SimpleAMS::UserSerializer,
+            include: [:microposts, :address],
           }).as_json
         }
 
@@ -41,7 +42,7 @@ module SerializersBenchmark
             adapter: :json_api,
             each_serializer: Serializers::AMS::UserSerializer,
             key_transform: :unaltered,
-            include: [:microposts]
+            include: [:microposts, :address]
           }).as_json
         }
 
