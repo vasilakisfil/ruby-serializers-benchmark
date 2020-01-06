@@ -32,7 +32,7 @@ class Address
   def id
     @id ||= rand(100000)
   end
-=begin
+
   def street_name
     @street_name ||= Faker::Address.street_name
   end
@@ -58,12 +58,11 @@ class Address
   end
 
   def created_at
-    @cretated_at ||= Faker::Date.backward(100)
+    @cretated_at ||= Faker::Date.backward(days: 100)
   end
 
   def updated_at
-    @updated_at ||= Faker::Date.between(created_at, Date.today)
+    @updated_at ||= Faker::Date.between(from: created_at, to: Date.today)
   end
-=end
 end
 

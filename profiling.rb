@@ -10,6 +10,7 @@ Bundler.require(:default)
   ].each { |f| require_relative f }
 end
 
+=begin
 def time_method(method=nil, *args)
   beginning_time = Time.now
   if block_given?
@@ -21,21 +22,14 @@ def time_method(method=nil, *args)
   puts "Time elapsed #{(end_time - beginning_time)*1000} milliseconds"
   return s
 end
+=end
 
 users = 1000.times.map{User.new}
-result = nil
 result = RubyProf.profile do
   SimpleAMS::Renderer::Collection.new(users, {
     serializer: Serializers::SimpleAMS::UserSerializer,
+    includes: []
   }).as_json
 end
-printer = RubyProf::CallStackPrinter.new(result)
-=begin
-foo = SimpleAMS::Renderer::Collection.new(users, {
-  serializer: Serializers::SimpleAMS::UserSerializer,
-}).as_json
-binding.pry
-=end
+printer = RubyProf::FlatPrinter.new(result)
 printer.print(STDOUT)
-
-

@@ -12,8 +12,12 @@ class Serializers
       type :user
       collection :users
 
-      has_many :microposts
-      has_many :addresses
+      has_many :microposts do
+        #generic :skip_data, true
+      end
+      has_many :addresses do
+        #generic :skip_data, true
+      end
     end
 
     class MicropostSerializer < BaseSerializer

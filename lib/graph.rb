@@ -2,32 +2,43 @@ require 'gruff'
 
 module SerializersBenchmark
   class Graph
-    attr_reader :results
+    attr_reader :results, :opts
 
-    def initialize(results)
+    def initialize(results, opts = {})
       @results = results
+      @opts = OpenStruct.new(opts)
     end
 
     def generate!
+      memory_graph.write("#{opts.memory_file || "memory"}.png")
+
+      memory_graph.write("#{opts.speed_file || "speed"}.png")
+    end
+
+    def memory_graph
       g = Gruff::Line.new
-      g.title = "Memory vs Collection size"
+      g.title = opts.memory_title || "Memory consumption"
       g.labels = labels
       memory_ratio.each do |label, values|
         g.data(
           label, values
         )
       end
-      g.write('memory.png')
 
+      return g
+    end
+
+    def speed_graph
       g = Gruff::Line.new
-      g.title = "Speed vs Collection size"
+      g.title = opts.speed_title || "Speed"
       g.labels = labels
       speed_ratio.each do |label, values|
         g.data(
           label, values
         )
       end
-      g.write('speed.png')
+
+      return g
     end
 
     def labels

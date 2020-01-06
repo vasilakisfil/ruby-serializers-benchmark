@@ -16,18 +16,29 @@ require_relative 'benchmark-memory/custom_io_output'
 end
 include SerializersBenchmark::Helpers
 
-AMOUNTS = [10, 250]#, 50, 100]
-TIME = {time: 10, warmup: 5}
+AMOUNTS = [1, 5, 10, 20, 50, 100, 250]
+TIME = {runtime: 500, warmup: 50}
 
 AMOUNTS.each do |collection_size|
   users = collection_size.times.map{User.new}
 
-  setup = setup_for(collection_size: collection_size)
+  setup = OpenStruct.new(
+    created_at: Time.now.to_s,
+    time: TIME,
+    collection_size: collection_size,
+    relations: [:microposts, :addresses]
+  )
   Results.instance << setup
+
   SerializersBenchmark::Memory.new(setup).run!(users)
   SerializersBenchmark::Speed.new(setup).run!(users)
 end
 
 File.write("results.yaml", Results.instance.to_yaml)
 
-SerializersBenchmark::Graph.new(Results.instance).generate!
+SerializersBenchmark::Graph.new(Results.instance, {
+  memory_file: "memory_collection",
+  speed_file: "speed_file",
+  memory_title: "Memory consumption for collection size",
+  speed_title: "Speed for collection size"
+}).generate!
