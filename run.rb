@@ -37,8 +37,8 @@ end
 File.write("results.yaml", Results.instance.to_yaml)
 
 SerializersBenchmark::Graph.new(Results.instance, {
-  memory_file: "memory_collection",
-  speed_file: "speed_file",
+  memory_file: "memory",
+  speed_file: "speed",
   memory_title: "Memory consumption for collection size",
   speed_title: "Speed for collection size"
 }).generate!

@@ -12,7 +12,7 @@ module SerializersBenchmark
     def generate!
       memory_graph.write("#{opts.memory_file || "memory"}.png")
 
-      memory_graph.write("#{opts.speed_file || "speed"}.png")
+      speed_graph.write("#{opts.speed_file || "speed"}.png")
     end
 
     def memory_graph
