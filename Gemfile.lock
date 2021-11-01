@@ -1,3 +1,8 @@
+PATH
+  remote: ../SimpleAMS
+  specs:
+    simple_ams (0.2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -70,7 +75,6 @@ GEM
       loofah (~> 2.3)
     rmagick (2.16.0)
     ruby-prof (1.0.0)
-    simple_ams (0.2.2)
     thread_safe (0.3.6)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
@@ -89,7 +93,7 @@ DEPENDENCIES
   jsonapi-serializable (= 0.3.1)
   pry
   ruby-prof
-  simple_ams (= 0.2.2)
+  simple_ams!
 
 BUNDLED WITH
-   1.17.3
+   2.1.4

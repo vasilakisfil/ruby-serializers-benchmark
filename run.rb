@@ -16,8 +16,8 @@ require_relative 'benchmark-memory/custom_io_output'
 end
 include SerializersBenchmark::Helpers
 
-AMOUNTS = [1, 5, 10, 20, 50, 100, 250]
-TIME = {runtime: 500, warmup: 50}
+AMOUNTS = [100]
+TIME = {runtime: 90, warmup: 20}
 
 AMOUNTS.each do |collection_size|
   users = collection_size.times.map{User.new}
